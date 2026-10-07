@@ -32,7 +32,7 @@ const PORTFOLIO = {
     cv: "",
     localisation: "France",
     // Couleur principale du site (code hexadécimal, ex. "#7c5cff", "#0a9396", "#e85d04")
-    couleur: "#7c5cff"
+    couleur: "#969696"
   },
 
   /* ---------- Section « À propos » ---------- */
