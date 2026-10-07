@@ -1,34 +1,126 @@
----
-layout: default
----
-<h1>{{ site.title }}</h1>
-<p class="sous-titre">{{ site.description }}</p>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Le titre et la description sont remplacés par main.js à partir de donnees.js -->
+  <title>Portfolio</title>
+  <meta name="description" content="Portfolio personnel">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Applique le thème (clair/sombre) avant l'affichage pour éviter un flash -->
+  <script>
+    try {
+      var theme = localStorage.getItem("theme");
+      if (theme) document.documentElement.setAttribute("data-theme", theme);
+    } catch (e) { /* stockage indisponible : thème du système */ }
+  </script>
+</head>
+<body>
+  <!-- Barre de progression de lecture, en haut de l'écran -->
+  <div class="progression" aria-hidden="true"></div>
 
-<h2>Profil</h2>
-<p> Eleve de première année en BTS SIO SISR.</p>
+  <!-- ===== En-tête et menu ===== -->
+  <header class="entete">
+    <a class="logo" href="#accueil" data-remplir="initiales">GA</a>
+    <nav class="menu" id="menu" aria-label="Menu principal">
+      <ul>
+        <li><a href="#apropos">À propos</a></li>
+        <li><a href="#competences">Compétences</a></li>
+        <li><a href="#projets">Projets</a></li>
+        <li><a href="#bts">Compétences BTS</a></li>
+        <li><a href="#parcours">Parcours</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="entete-actions">
+      <button class="bouton-icone" id="bouton-theme" type="button" aria-label="Changer de thème">
+        <span class="icone-soleil" aria-hidden="true">☀</span>
+        <span class="icone-lune" aria-hidden="true">☾</span>
+      </button>
+      <button class="bouton-icone burger" id="bouton-menu" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
 
-{% assign projets = site.projets | sort: "date" | reverse %}
+  <main>
+    <!-- ===== Accueil (hero) ===== -->
+    <section id="accueil" class="hero">
+      <!-- Fond animé : particules reliées entre elles, dessinées par main.js -->
+      <canvas id="particules" aria-hidden="true"></canvas>
+      <div class="hero-contenu">
+        <p class="hero-salut">Bonjour, je suis</p>
+        <h1 class="hero-nom" data-remplir="nomComplet">Prénom Nom</h1>
+        <p class="hero-titre"><span id="texte-tape"></span><span class="curseur" aria-hidden="true">|</span></p>
+        <p class="hero-accroche" data-remplir="accroche"></p>
+        <div class="hero-boutons">
+          <a class="bouton bouton-plein" href="#projets">Voir mes projets</a>
+          <a class="bouton bouton-contour" href="#contact">Me contacter</a>
+          <a class="bouton bouton-contour" id="bouton-cv" href="#" download hidden>Télécharger mon CV</a>
+        </div>
+      </div>
+      <a class="defiler" href="#apropos" aria-label="Descendre vers la suite"><span></span></a>
+    </section>
 
-<h2 id="projets">Projets ({{ projets.size }})</h2>
-{% for p in projets %}
-<article class="carte">
-  <h3><a href="{{ p.url | relative_url }}">{{ p.title }}</a></h3>
-  <p>{{ p.resume }}</p>
-  <p class="meta">{{ p.date | date: "%m/%Y" }} · {{ p.cadre }}</p>
-</article>
-{% endfor %}
+    <!-- ===== À propos ===== -->
+    <section id="apropos" class="section">
+      <h2 class="titre-section revele">À propos</h2>
+      <div class="apropos">
+        <div class="avatar revele" id="avatar"></div>
+        <div class="apropos-texte revele" id="apropos-texte"></div>
+      </div>
+      <div class="chiffres" id="chiffres"></div>
+    </section>
 
-<h2 id="competences">Compétences du bloc 1</h2>
-<p>Chaque croix renvoie au projet qui la prouve. Le tableau se remplit tout seul à chaque projet ajouté.</p>
-<div class="defile">
-<table>
-  <thead>
-    <tr><th scope="col">Compétence</th>{% for p in projets %}<th scope="col"><a href="{{ p.url | relative_url }}">P{{ forloop.rindex }}</a></th>{% endfor %}</tr>
-  </thead>
-  <tbody>
-  {% for c in site.data.competences %}
-    <tr><th scope="row">{{ c.libelle }}</th>{% for p in projets %}<td class="case">{% if p.competences contains c.code %}<a href="{{ p.url | relative_url }}" aria-label="{{ c.libelle }} : {{ p.title }}">X</a>{% endif %}</td>{% endfor %}</tr>
-  {% endfor %}
-  </tbody>
-</table>
-</div>
+    <!-- ===== Compétences techniques ===== -->
+    <section id="competences" class="section">
+      <h2 class="titre-section revele">Compétences</h2>
+      <div class="grille-competences" id="liste-competences"></div>
+    </section>
+
+    <!-- ===== Projets ===== -->
+    <section id="projets" class="section">
+      <h2 class="titre-section revele">Projets</h2>
+      <div class="filtres revele" id="filtres" role="group" aria-label="Filtrer les projets"></div>
+      <div class="grille-projets" id="liste-projets"></div>
+    </section>
+
+    <!-- ===== Tableau des compétences du BTS ===== -->
+    <section id="bts" class="section">
+      <h2 class="titre-section revele">Compétences BTS</h2>
+      <p class="revele">Chaque coche renvoie au projet qui la prouve. Le tableau se remplit tout seul à chaque projet ajouté.</p>
+      <div class="defile revele"><table class="tableau-bts" id="tableau-bts"></table></div>
+    </section>
+
+    <!-- ===== Parcours ===== -->
+    <section id="parcours" class="section">
+      <h2 class="titre-section revele">Parcours</h2>
+      <ol class="frise" id="frise"></ol>
+    </section>
+
+    <!-- ===== Contact ===== -->
+    <section id="contact" class="section contact">
+      <h2 class="titre-section revele">Contact</h2>
+      <p class="revele" data-remplir="messageContact"></p>
+      <div class="liens-contact revele" id="liens-contact"></div>
+    </section>
+  </main>
+
+  <footer class="pied">
+    <p><span data-remplir="nomComplet"></span> · <span id="annee"></span> · contenu sous licence <a href="https://creativecommons.org/licenses/by/4.0/deed.fr">CC BY 4.0</a> · <a href="mentions-legales.html">mentions légales</a></p>
+  </footer>
+
+  <!-- Bouton de retour en haut, visible après un peu de défilement -->
+  <a class="haut" href="#accueil" aria-label="Revenir en haut">↑</a>
+
+  <!-- Fenêtre de détail d'un projet, remplie par main.js -->
+  <dialog class="fenetre" id="fenetre-projet" aria-labelledby="fenetre-titre">
+    <button class="fenetre-fermer" type="button" aria-label="Fermer">×</button>
+    <div id="fenetre-contenu"></div>
+  </dialog>
+
+  <!-- D'abord les données, puis le script qui construit la page -->
+  <script src="js/donnees.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
