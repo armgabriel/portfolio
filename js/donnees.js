@@ -32,7 +32,7 @@ const PORTFOLIO = {
     cv: "",
     localisation: "France",
     // Couleur principale du site (code hexadécimal, ex. "#7c5cff", "#0a9396", "#e85d04")
-    couleur: "#969696"
+    couleur: "#16161d"
   },
 
   /* ---------- Section « À propos » ---------- */
@@ -107,7 +107,7 @@ const PORTFOLIO = {
       cadre: "Atelier de professionnalisation",
       categorie: "Web",
       resume: "Création et publication d'un site personnel gratuit, hébergé sur GitHub Pages, qui présente mes réalisations.",
-      image: "images/exemple.png",
+      image: "images/capybara.jpg",
       technologies: ["HTML", "CSS", "JavaScript", "GitHub Pages"],
       blocs: ["c3", "c6"],
       lien: "",
@@ -150,7 +150,7 @@ const PORTFOLIO = {
       cadre: "Projet de classe",
       categorie: "Réseau",
       resume: "Conception d'un réseau segmenté en VLAN avec routage inter-VLAN et serveur DHCP.",
-      image: "",
+      image: "images/capybara.jpg",
       technologies: ["Cisco Packet Tracer", "VLAN", "DHCP"],
       blocs: ["c1", "c4", "c5"],
       lien: "",
