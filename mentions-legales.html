@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mentions légales</title>
+  <meta name="description" content="Mentions légales">
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    try {
+      var theme = localStorage.getItem("theme");
+      if (theme) document.documentElement.setAttribute("data-theme", theme);
+    } catch (e) { /* stockage indisponible : thème du système */ }
+  </script>
+</head>
+<!-- data-titre-page : utilisé par main.js pour composer le titre de l'onglet -->
+<body data-titre-page="Mentions légales">
+  <header class="entete" data-fixe>
+    <a class="logo" href="index.html" data-remplir="initiales">GA</a>
+    <div class="entete-actions">
+      <a class="bouton bouton-contour" href="index.html" style="padding:.4rem 1rem">← Retour</a>
+      <button class="bouton-icone" id="bouton-theme" type="button" aria-label="Changer de thème">
+        <span class="icone-soleil" aria-hidden="true">☀</span>
+        <span class="icone-lune" aria-hidden="true">☾</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="page-simple">
+    <h1>Mentions légales</h1>
+
+    <h2>Éditeur du site</h2>
+    <!-- Le nom et l'adresse e-mail sont repris de js/donnees.js -->
+    <p><span data-remplir="nomComplet"></span>, étudiant. Site personnel, sans but commercial. Contact : <span data-remplir="email"></span>.</p>
+
+    <h2>Hébergeur</h2>
+    <p>GitHub Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis, au moyen du service GitHub Pages.</p>
+
+    <h2>Données personnelles</h2>
+    <p>Ce site ne dépose aucun cookie, ne contient aucun formulaire et ne mesure pas l'audience. Aucune donnée n'est collectée sur les visiteurs. Le choix du thème clair ou sombre est seulement mémorisé dans votre navigateur.</p>
+
+    <h2>Licence</h2>
+    <p>Les textes et les captures sont publiés sous licence CC BY 4.0 : on peut les reprendre en citant l'auteur. Le code HTML, CSS et JavaScript est sous licence MIT (fichier LICENSE du dépôt).</p>
+  </main>
+
+  <footer class="pied">
+    <p><span data-remplir="nomComplet"></span> · <span id="annee"></span></p>
+  </footer>
+
+  <script src="js/donnees.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
