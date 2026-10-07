@@ -21,7 +21,7 @@ Le matériel, les logiciels, seul ou en équipe.
 
 ## Productions et preuves
 
-![Ce que montre la capture]({{ "/images/capybara.png" | relative_url }})
+![Ce que montre la capture]({{ "/images/capybara.jpg" | relative_url }})
 
 ## Ce que j'en retiens
 
