@@ -5,44 +5,20 @@
    une fois pour le thème clair et une fois pour le thème sombre.
    ===================================================================== */
 
-/* ---------- Couleurs du thème clair ---------- */
+/*couleurs*/
 :root {
-  --accent: #7c5cff;
-  --accent-2: #00c2a8;          /* seconde couleur des dégradés */
-  --fond: #f7f7fb;
+  --accent: #636363;
+  --accent-2: #3b3b3b;          /* seconde couleur des dégradés */
+  --fond: #969696;
   --fond-carte: #ffffff;
-  --texte: #1c1d29;
-  --texte-doux: #5d6075;
+  --texte: #141414;
+  --texte-doux: #141414;
   --trait: #e3e4ee;
   --ombre: 0 10px 30px rgba(30, 30, 60, .08);
   --rayon: 16px;
   --largeur: 72rem;
   --entete: 4.2rem;
   color-scheme: light;
-}
-
-/* ---------- Couleurs du thème sombre ----------
-   Appliqué si le système est en sombre (sauf choix « clair » forcé),
-   ou si l'utilisateur a choisi « sombre » avec le bouton. */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --fond: #0f1020;
-    --fond-carte: #181a2e;
-    --texte: #ecedf7;
-    --texte-doux: #a3a6c2;
-    --trait: #2a2d47;
-    --ombre: 0 10px 30px rgba(0, 0, 0, .35);
-    color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --fond: #0f1020;
-  --fond-carte: #181a2e;
-  --texte: #ecedf7;
-  --texte-doux: #a3a6c2;
-  --trait: #2a2d47;
-  --ombre: 0 10px 30px rgba(0, 0, 0, .35);
-  color-scheme: dark;
 }
 
 /* ---------- Bases ---------- */
